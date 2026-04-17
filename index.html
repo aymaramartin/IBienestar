@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="IBienestar - Soul Healing. Terapias alternativas con Ivana Budi: Reiki, Constelaciones, Registros Akáshicos, Florales y Aromaterapia." />
+  <meta name="author" content="Ivana Budi" />
+  <meta property="og:title" content="IBienestar · Soul Healing" />
+  <meta property="og:description" content="Terapias alternativas para el alma. Reiki, Constelaciones, Registros Akáshicos, Florales y Aromaterapia." />
+  <title>IBienestar · Soul Healing</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Dancing+Script:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+</head>
+<body>
+
+  <!-- Decorative background butterflies -->
+  <div class="butterflies-bg" aria-hidden="true">
+    <svg class="butterfly b1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <use href="#butterfly-shape" />
+    </svg>
+    <svg class="butterfly b2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <use href="#butterfly-shape" />
+    </svg>
+    <svg class="butterfly b3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <use href="#butterfly-shape" />
+    </svg>
+  </div>
+
+  <!-- SVG Symbol Definitions -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="butterfly-shape" viewBox="0 0 100 100">
+        <!-- Upper wings -->
+        <path d="M50 48 Q42 22, 22 20 Q10 28, 14 44 Q18 52, 32 52 Q46 52, 50 48 Z"
+              fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        <path d="M50 48 Q58 22, 78 20 Q90 28, 86 44 Q82 52, 68 52 Q54 52, 50 48 Z"
+              fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        <!-- Lower wings -->
+        <path d="M50 52 Q44 68, 28 72 Q18 70, 20 60 Q26 54, 38 54 Q46 54, 50 52 Z"
+              fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        <path d="M50 52 Q56 68, 72 72 Q82 70, 80 60 Q74 54, 62 54 Q54 54, 50 52 Z"
+              fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        <!-- Body -->
+        <ellipse cx="50" cy="50" rx="1.5" ry="14" fill="currentColor"/>
+        <!-- Antennae -->
+        <path d="M49 38 Q46 30, 43 26" fill="none" stroke="currentColor" stroke-width="1"/>
+        <path d="M51 38 Q54 30, 57 26" fill="none" stroke="currentColor" stroke-width="1"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Header / Navigation -->
+  <header class="site-header" id="top">
+    <div class="container nav-wrapper">
+      <a href="#top" class="logo-mark" aria-label="IBienestar inicio">
+        <span class="logo-ib"><span class="logo-i">I</span><span class="logo-b">B</span></span>
+        <span class="logo-text">ienestar</span>
+        <svg class="logo-butterfly" viewBox="0 0 100 100" aria-hidden="true">
+          <use href="#butterfly-shape" />
+        </svg>
+      </a>
+
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#terapias">Terapias</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#agenda">Agendar</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <p class="hero-kicker">soul healing</p>
+      <h1 class="hero-title">
+        <span class="hero-line">Un camino</span>
+        <span class="hero-line hero-cursive">de sanación</span>
+        <span class="hero-line">para el alma</span>
+      </h1>
+      <p class="hero-sub">
+        Terapias alternativas con Ivana Budi. Acompañamiento energético, espiritual y emocional.
+      </p>
+      <div class="hero-actions">
+        <a href="#agenda" class="btn btn-primary">Agendar una sesión</a>
+        <a href="#terapias" class="btn btn-ghost">Ver terapias</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <span>scroll</span>
+      <span class="hero-scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- Sobre mí -->
+  <section class="section section-about" id="sobre-mi">
+    <div class="container about-grid">
+      <div class="about-visual" aria-hidden="true">
+        <div class="about-circle">
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="95" fill="none" stroke="var(--color-lavender)" stroke-width="1"/>
+            <text x="100" y="55" text-anchor="middle" class="about-ib-text">IB</text>
+            <text x="100" y="130" text-anchor="middle" class="about-script">soul healing</text>
+          </svg>
+          <svg class="about-butterfly" viewBox="0 0 100 100">
+            <use href="#butterfly-shape"/>
+          </svg>
+        </div>
+      </div>
+      <div class="about-content">
+        <p class="section-kicker">Sobre mí</p>
+        <h2 class="section-title">Ivana Budi</h2>
+        <p class="about-lead">
+          Soy terapeuta hace más de 10 años.
+        </p>
+        <p>
+          Disfruto profundamente cada terapia que realizo. Siento que es un camino de sanación
+          tanto para el paciente como para el terapeuta — un encuentro donde ambos nos
+          transformamos.
+        </p>
+        <p>
+          Mi propósito es acompañarte a reconectar con tu esencia, liberar lo que pesa y abrir
+          espacio a una vida más plena, consciente y luminosa.
+        </p>
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-num">10<span class="stat-plus">+</span></span>
+            <span class="stat-label">años de experiencia</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">4</span>
+            <span class="stat-label">terapias disponibles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Terapias -->
+  <section class="section section-therapies" id="terapias">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-kicker">Terapias</p>
+        <h2 class="section-title">Un espacio para cada necesidad</h2>
+        <p class="section-intro">
+          Cada terapia es una puerta distinta hacia el bienestar. Elegí la que resuene con
+          vos, o conversemos para encontrar juntas tu mejor camino.
+        </p>
+      </div>
+
+      <div class="therapies-grid">
+        <article class="therapy-card">
+          <div class="therapy-icon">
+            <svg viewBox="0 0 60 60" aria-hidden="true">
+              <circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="1"/>
+              <circle cx="30" cy="30" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+              <circle cx="30" cy="30" r="3" fill="currentColor"/>
+              <g stroke="currentColor" stroke-width="1">
+                <line x1="30" y1="5" x2="30" y2="12"/>
+                <line x1="30" y1="48" x2="30" y2="55"/>
+                <line x1="5" y1="30" x2="12" y2="30"/>
+                <line x1="48" y1="30" x2="55" y2="30"/>
+                <line x1="12" y1="12" x2="17" y2="17"/>
+                <line x1="43" y1="43" x2="48" y2="48"/>
+                <line x1="48" y1="12" x2="43" y2="17"/>
+                <line x1="17" y1="43" x2="12" y2="48"/>
+              </g>
+            </svg>
+          </div>
+          <h3>Reiki</h3>
+          <p class="therapy-sub">Terapia energética</p>
+          <p>
+            Armonización de la energía vital a través de la imposición de manos. Ayuda a
+            aliviar el estrés, equilibrar emociones y acompañar procesos de sanación física.
+          </p>
+        </article>
+
+        <article class="therapy-card">
+          <div class="therapy-icon">
+            <svg viewBox="0 0 60 60" aria-hidden="true">
+              <circle cx="20" cy="22" r="6" fill="none" stroke="currentColor" stroke-width="1"/>
+              <circle cx="40" cy="22" r="6" fill="none" stroke="currentColor" stroke-width="1"/>
+              <circle cx="30" cy="40" r="6" fill="none" stroke="currentColor" stroke-width="1"/>
+              <line x1="20" y1="28" x2="30" y2="40" stroke="currentColor" stroke-width="1"/>
+              <line x1="40" y1="28" x2="30" y2="40" stroke="currentColor" stroke-width="1"/>
+              <line x1="26" y1="22" x2="34" y2="22" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </div>
+          <h3>Constelaciones</h3>
+          <p class="therapy-sub">Acompañamiento sistémico</p>
+          <p>
+            Un espacio para mirar con amor los vínculos familiares y patrones heredados.
+            Permite sanar historias, ordenar lazos y recuperar la propia fuerza.
+          </p>
+        </article>
+
+        <article class="therapy-card">
+          <div class="therapy-icon">
+            <svg viewBox="0 0 60 60" aria-hidden="true">
+              <path d="M30 8 Q42 20, 42 32 Q42 48, 30 52 Q18 48, 18 32 Q18 20, 30 8 Z"
+                    fill="none" stroke="currentColor" stroke-width="1"/>
+              <path d="M30 18 Q36 26, 36 34 Q36 42, 30 46" fill="none" stroke="currentColor" stroke-width="1"/>
+              <circle cx="30" cy="30" r="2" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>Registros Akáshicos</h3>
+          <p class="therapy-sub">Lectura espiritual</p>
+          <p>
+            Apertura a la memoria del alma para recibir respuestas, comprender tu propósito
+            y soltar cargas de otras vidas. Una experiencia de profunda claridad interior.
+          </p>
+        </article>
+
+        <article class="therapy-card">
+          <div class="therapy-icon">
+            <svg viewBox="0 0 60 60" aria-hidden="true">
+              <path d="M30 45 L30 25" stroke="currentColor" stroke-width="1"/>
+              <path d="M30 25 Q22 22, 20 15 Q27 15, 30 22 Q33 15, 40 15 Q38 22, 30 25"
+                    fill="none" stroke="currentColor" stroke-width="1"/>
+              <path d="M30 32 Q22 30, 18 24" fill="none" stroke="currentColor" stroke-width="1"/>
+              <path d="M30 38 Q38 36, 42 30" fill="none" stroke="currentColor" stroke-width="1"/>
+              <path d="M22 48 Q30 44, 38 48" fill="none" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </div>
+          <h3>Florales & Aromaterapia</h3>
+          <p class="therapy-sub">Esencias y aromas</p>
+          <p>
+            Flores de Bach y aceites esenciales personalizados para acompañar estados
+            emocionales. Un aliado sutil y poderoso para tu proceso diario.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section class="section section-blog" id="blog">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-kicker">Desde el alma</p>
+        <h2 class="section-title">Palabras que abrazan</h2>
+        <p class="section-intro">
+          Reflexiones, herramientas y pequeños recordatorios para acompañar tu camino.
+        </p>
+      </div>
+
+      <div class="blog-grid" id="blog-grid">
+        <!-- Posts rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Blog post modal -->
+    <div class="post-modal" id="post-modal" aria-hidden="true" role="dialog">
+      <div class="post-modal-backdrop" data-close></div>
+      <article class="post-modal-content">
+        <button class="post-modal-close" data-close aria-label="Cerrar">×</button>
+        <p class="post-modal-date" id="modal-date"></p>
+        <h2 class="post-modal-title" id="modal-title"></h2>
+        <div class="post-modal-body" id="modal-body"></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Agenda -->
+  <section class="section section-agenda" id="agenda">
+    <div class="container agenda-inner">
+      <div class="agenda-art" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="80" fill="none" stroke="var(--color-violet)" stroke-width="0.5" opacity="0.4"/>
+          <circle cx="100" cy="100" r="60" fill="none" stroke="var(--color-violet)" stroke-width="0.5" opacity="0.5"/>
+          <circle cx="100" cy="100" r="40" fill="none" stroke="var(--color-violet)" stroke-width="0.5" opacity="0.6"/>
+          <circle cx="100" cy="100" r="20" fill="none" stroke="var(--color-violet)" stroke-width="0.5" opacity="0.7"/>
+        </svg>
+        <svg class="agenda-butterfly" viewBox="0 0 100 100">
+          <use href="#butterfly-shape"/>
+        </svg>
+      </div>
+      <div class="agenda-content">
+        <p class="section-kicker">Tu turno</p>
+        <h2 class="section-title">Agendá tu sesión</h2>
+        <p>
+          Coordinemos por WhatsApp. Contame qué terapia te llama, y vemos juntas el día y el
+          horario que mejor te acomode.
+        </p>
+        <div class="agenda-steps">
+          <div class="step"><span>01</span><p>Tocá el botón de WhatsApp</p></div>
+          <div class="step"><span>02</span><p>Contame qué terapia te interesa</p></div>
+          <div class="step"><span>03</span><p>Coordinamos fecha y horario</p></div>
+        </div>
+        <a href="https://wa.me/5491138435293?text=Hola%20Ivana%2C%20quisiera%20agendar%20una%20sesi%C3%B3n%20de%20terapia%20%F0%9F%A6%8B"
+           class="btn btn-whatsapp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.15-.174.2-.298.3-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.002-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.82 11.82 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 0 0-3.48-8.413Z"/>
+          </svg>
+          Escribir por WhatsApp
+        </a>
+        <p class="agenda-note">
+          <em>Las sesiones pueden ser presenciales u online.</em>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="section section-contact" id="contacto">
+    <div class="container contact-grid">
+      <div>
+        <p class="section-kicker">Contacto</p>
+        <h2 class="section-title">Encontrémonos</h2>
+        <p>
+          Podés escribirme por WhatsApp, seguirme en Instagram o visitar el espacio de
+          terapia.
+        </p>
+      </div>
+      <ul class="contact-list">
+        <li>
+          <span class="contact-label">WhatsApp</span>
+          <a href="https://wa.me/5491138435293" target="_blank" rel="noopener">+54 9 11 3843-5293</a>
+        </li>
+        <li>
+          <span class="contact-label">Instagram</span>
+          <a href="https://www.instagram.com/_ibienestar" target="_blank" rel="noopener">@_ibienestar</a>
+        </li>
+        <li>
+          <span class="contact-label">Ubicación</span>
+          <a href="https://maps.app.goo.gl/AAhdk7UYDsmKb43U8" target="_blank" rel="noopener">Ver en Google Maps ↗</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-ib"><span class="logo-i">I</span><span class="logo-b">B</span></span>
+        <span class="footer-script">soul healing</span>
+      </div>
+      <p class="footer-text">
+        © <span id="year"></span> IBienestar · Ivana Budi · Todos los derechos reservados
+      </p>
+      <p class="footer-made">
+        <em>Un camino de sanación 🦋</em>
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/posts.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
