@@ -106,7 +106,7 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
   // Mark sections for reveal
-  document.querySelectorAll('.section-head, .therapy-card, .about-content, .about-visual, .agenda-content, .agenda-art, .contact-grid > *').forEach(el => {
+  document.querySelectorAll('.section-head, .therapy-card, .about-content, .about-visual, .agenda-content, .agenda-art, .contact-card, .location-info, .map-wrap').forEach(el => {
     el.classList.add('reveal');
     observer.observe(el);
   });
