@@ -27,9 +27,32 @@ ibienestar/
    `https://tuusuario.github.io/ibienestar/`
 6. ¡Listo! En unos minutos tu web está online.
 
-## ✍️ Cómo escribir nuevos posts del blog
+## 🦋 Panel de escritura (la forma fácil)
 
-Todo lo que necesitás editar está en **`js/posts.js`**.
+Hay una página secreta solo para vos: `escribir.html`
+
+Para acceder, abrí en el navegador:
+```
+https://aymaramartin.github.io/IBienestar/escribir.html
+```
+
+(reemplazá `aymaramartin` y `IBienestar` con tus datos si cambiaron)
+
+**Qué podés hacer ahí:**
+- Escribir tu texto con un editor lindo (como un mensaje de WhatsApp)
+- Ver una **vista previa** de cómo va a quedar antes de publicarlo
+- El panel te genera el código automáticamente
+- Tocás "Copiar" y listo
+
+**Después solo te queda pegarlo en `js/posts.js` en GitHub.** El panel te explica cómo, paso a paso.
+
+⚠️ Esta página es solo para vos — nadie que entre a tu web va a encontrarla. No hay ningún link hacia ella desde la web pública. Guardate la URL en favoritos 💜
+
+---
+
+## ✍️ Cómo escribir nuevos posts del blog (manualmente)
+
+Si preferís editar el archivo directamente, todo está en **`js/posts.js`**.
 
 Abrí ese archivo y vas a ver algo así:
 
