@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Panel de escritura · IBienestar</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Dancing+Script:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <style>
+    :root {
+      --color-violet: #6b2d8c;
+      --color-violet-deep: #4a1d6b;
+      --color-lavender: #b8a2c8;
+      --color-lavender-soft: #d8c9e0;
+      --color-lavender-bg: #ede6f2;
+      --color-cream: #faf7f5;
+      --color-ivory: #f4eef2;
+      --color-ink: #2c1b3a;
+      --color-ink-soft: #5a4a68;
+      --color-line: #e5dae8;
+      --color-success: #25d366;
+      --font-display: "Cormorant Garamond", serif;
+      --font-script: "Dancing Script", cursive;
+      --font-body: "Jost", system-ui, sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--color-ink);
+      background: var(--color-cream);
+      line-height: 1.7;
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+    }
+
+    .wrap {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      line-height: 1.2;
+      margin: 0 0 0.4em;
+      color: var(--color-ink);
+    }
+
+    /* Header */
+    .panel-header {
+      text-align: center;
+      margin-bottom: 50px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--color-line);
+    }
+    .panel-kicker {
+      font-family: var(--font-script);
+      color: var(--color-violet);
+      font-size: 28px;
+      margin: 0 0 4px;
+    }
+    .panel-header h1 {
+      font-size: 48px;
+      letter-spacing: -0.01em;
+    }
+    .panel-header p {
+      color: var(--color-ink-soft);
+      font-size: 15px;
+      max-width: 500px;
+      margin: 10px auto 0;
+    }
+
+    /* Form */
+    .card {
+      background: #fff;
+      border: 1px solid var(--color-line);
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 4px 20px -12px rgba(107, 45, 140, 0.15);
+    }
+
+    .field { margin-bottom: 24px; }
+    label {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-ink-soft);
+      margin-bottom: 8px;
+      font-weight: 400;
+    }
+    input[type="text"], input[type="date"], textarea, select {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      border: 1px solid var(--color-line);
+      border-radius: 6px;
+      background: var(--color-cream);
+      color: var(--color-ink);
+      transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+      font-weight: 300;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--color-violet);
+      box-shadow: 0 0 0 3px rgba(107, 45, 140, 0.12);
+    }
+    textarea {
+      min-height: 180px;
+      resize: vertical;
+      line-height: 1.7;
+      font-family: var(--font-display);
+      font-size: 18px;
+    }
+    #excerpt { min-height: 80px; font-family: var(--font-body); font-size: 16px; }
+
+    .hint {
+      font-size: 13px;
+      color: var(--color-ink-soft);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* Icon picker */
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .icon-option {
+      border: 1px solid var(--color-line);
+      border-radius: 8px;
+      padding: 14px 8px;
+      background: var(--color-cream);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s var(--ease);
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink-soft);
+    }
+    .icon-option svg {
+      width: 36px;
+      height: 36px;
+      display: block;
+      margin: 0 auto 6px;
+      color: var(--color-violet);
+    }
+    .icon-option:hover {
+      border-color: var(--color-lavender);
+      background: #fff;
+    }
+    .icon-option.selected {
+      border-color: var(--color-violet);
+      background: var(--color-lavender-bg);
+      color: var(--color-violet);
+    }
+
+    /* Buttons */
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    button {
+      font-family: var(--font-body);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+      font-weight: 400;
+    }
+    .btn-primary {
+      background: var(--color-violet);
+      color: #fff;
+      border-color: var(--color-violet);
+    }
+    .btn-primary:hover {
+      background: var(--color-violet-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -10px rgba(107, 45, 140, 0.4);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-violet);
+      border-color: var(--color-violet);
+    }
+    .btn-ghost:hover {
+      background: var(--color-violet);
+      color: #fff;
+    }
+
+    /* Output box */
+    .output {
+      margin-top: 40px;
+      display: none;
+    }
+    .output.show { display: block; animation: slideUp 0.4s var(--ease); }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .output h2 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .output-intro {
+      color: var(--color-ink-soft);
+      margin-bottom: 20px;
+    }
+    .code-box {
+      position: relative;
+      background: var(--color-ink);
+      color: #e8dcf0;
+      border-radius: 8px;
+      padding: 24px;
+      padding-right: 120px;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 8px 16px;
+      font-size: 11px;
+      background: var(--color-violet);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      transition: all 0.3s var(--ease);
+    }
+    .copy-btn:hover { background: var(--color-lavender); }
+    .copy-btn.copied {
+      background: var(--color-success);
+    }
+
+    /* Instructions */
+    .instructions {
+      margin-top: 40px;
+      background: var(--color-lavender-bg);
+      border-radius: 10px;
+      padding: 32px;
+      border-left: 3px solid var(--color-violet);
+    }
+    .instructions h3 {
+      font-size: 22px;
+      color: var(--color-violet);
+      margin-bottom: 16px;
+    }
+    .instructions ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .instructions li {
+      margin-bottom: 10px;
+      color: var(--color-ink);
+    }
+    .instructions code {
+      background: #fff;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'SF Mono', Menlo, monospace;
+      font-size: 13px;
+      color: var(--color-violet-deep);
+    }
+
+    /* Preview */
+    .preview {
+      margin-top: 40px;
+      background: #fff;
+      border: 1px solid var(--color-line);
+      border-radius: 10px;
+      padding: 40px;
+      display: none;
+    }
+    .preview.show { display: block; animation: slideUp 0.4s var(--ease); }
+    .preview-label {
+      font-family: var(--font-script);
+      font-size: 22px;
+      color: var(--color-lavender);
+      margin: 0 0 4px;
+    }
+    .preview-date {
+      font-family: var(--font-body);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-lavender);
+      margin-bottom: 12px;
+    }
+    .preview-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      color: var(--color-ink);
+      margin: 0 0 16px;
+      line-height: 1.2;
+    }
+    .preview-body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--color-ink);
+    }
+    .preview-body p { margin-bottom: 1em; }
+    .preview-body em { color: var(--color-violet); }
+
+    /* Footer */
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: var(--color-ink-soft);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s var(--ease);
+    }
+    .back-link:hover { color: var(--color-violet); }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .card { padding: 28px 20px; }
+      .panel-header h1 { font-size: 36px; }
+      .icon-grid { grid-template-columns: repeat(3, 1fr); }
+      .code-box { padding: 50px 16px 16px; }
+      .copy-btn { top: 10px; right: 10px; }
+      .actions { flex-direction: column; }
+      button { width: 100%; }
+      .preview { padding: 28px 20px; }
+      .preview-title { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <header class="panel-header">
+      <p class="panel-kicker">para vos, Ivana</p>
+      <h1>Panel de escritura</h1>
+      <p>Escribí tu micro-texto del día. Al terminar, este panel te arma el código y solo tenés que copiarlo y pegarlo en GitHub. 🦋</p>
+    </header>
+
+    <form class="card" id="post-form" onsubmit="return false;">
+
+      <div class="field">
+        <label for="date">Fecha</label>
+        <input type="date" id="date" required />
+        <p class="hint">Se rellena con la fecha de hoy automáticamente. Cambiala si querés.</p>
+      </div>
+
+      <div class="field">
+        <label for="title">Título</label>
+        <input type="text" id="title" placeholder="El alma también pide descanso" required />
+      </div>
+
+      <div class="field">
+        <label for="excerpt">Resumen corto <span style="text-transform:none;font-weight:400;letter-spacing:0;">(se muestra en la tarjeta del blog)</span></label>
+        <textarea id="excerpt" placeholder="Una o dos oraciones que inviten a leer..." required></textarea>
+      </div>
+
+      <div class="field">
+        <label for="content">Texto completo</label>
+        <textarea id="content" placeholder="Escribí tu reflexión, pensamientos, micro-texto del día..." required></textarea>
+        <p class="hint">Los párrafos se separan con líneas en blanco (tocá Enter dos veces). Para <em>cursiva</em> envolvé el texto entre _guiones bajos_. Para <strong>negrita</strong> entre **dos asteriscos**.</p>
+      </div>
+
+      <div class="field">
+        <label>Ícono</label>
+        <div class="icon-grid" id="icon-grid">
+          <div class="icon-option selected" data-icon="butterfly">
+            <svg viewBox="0 0 100 100"><path d="M50 48 Q42 22, 22 20 Q10 28, 14 44 Q18 52, 32 52 Q46 52, 50 48 Z M50 48 Q58 22, 78 20 Q90 28, 86 44 Q82 52, 68 52 Q54 52, 50 48 Z M50 52 Q44 68, 28 72 Q18 70, 20 60 Q26 54, 38 54 Q46 54, 50 52 Z M50 52 Q56 68, 72 72 Q82 70, 80 60 Q74 54, 62 54 Q54 54, 50 52 Z" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="50" cy="50" rx="1.5" ry="14" fill="currentColor"/></svg>
+            Mariposa
+          </div>
+          <div class="icon-option" data-icon="moon">
+            <svg viewBox="0 0 100 100"><path d="M65 20 A 35 35 0 1 0 65 80 A 28 28 0 1 1 65 20 Z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            Luna
+          </div>
+          <div class="icon-option" data-icon="sun">
+            <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="18" fill="none" stroke="currentColor" stroke-width="1.5"/><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="50" y1="15" x2="50" y2="25"/><line x1="50" y1="75" x2="50" y2="85"/><line x1="15" y1="50" x2="25" y2="50"/><line x1="75" y1="50" x2="85" y2="50"/><line x1="25" y1="25" x2="32" y2="32"/><line x1="68" y1="68" x2="75" y2="75"/><line x1="75" y1="25" x2="68" y2="32"/><line x1="32" y1="68" x2="25" y2="75"/></g></svg>
+            Sol
+          </div>
+          <div class="icon-option" data-icon="lotus">
+            <svg viewBox="0 0 100 100"><path d="M50 70 Q35 60, 30 45 Q40 48, 45 55 Q42 40, 50 28 Q58 40, 55 55 Q60 48, 70 45 Q65 60, 50 70 Z M50 70 Q30 68, 20 60 Q30 72, 50 75 Q70 72, 80 60 Q70 68, 50 70 Z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            Loto
+          </div>
+          <div class="icon-option" data-icon="heart">
+            <svg viewBox="0 0 100 100"><path d="M50 75 Q30 60, 25 45 Q22 30, 35 25 Q45 25, 50 35 Q55 25, 65 25 Q78 30, 75 45 Q70 60, 50 75 Z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            Corazón
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn-primary" id="generate-btn">Generar código</button>
+        <button type="button" class="btn-ghost" id="preview-btn">Vista previa</button>
+      </div>
+
+    </form>
+
+    <!-- Preview -->
+    <div class="preview" id="preview">
+      <p class="preview-label">así se va a ver</p>
+      <p class="preview-date" id="preview-date"></p>
+      <h2 class="preview-title" id="preview-title"></h2>
+      <div class="preview-body" id="preview-body"></div>
+    </div>
+
+    <!-- Output -->
+    <div class="output" id="output">
+      <h2>Tu código está listo 🦋</h2>
+      <p class="output-intro">Tocá "Copiar" y seguí los pasos de abajo para publicarlo en tu web.</p>
+      <div class="code-box">
+        <button class="copy-btn" id="copy-btn">Copiar</button>
+        <code id="code-output"></code>
+      </div>
+
+      <div class="instructions">
+        <h3>Cómo publicarlo (3 pasitos)</h3>
+        <ol>
+          <li>Andá a tu repositorio en GitHub y abrí el archivo <code>js/posts.js</code></li>
+          <li>Tocá el lapicito ✏️ (editar) en la esquina superior derecha del archivo</li>
+          <li>Pegá el código que copiaste <strong>justo después</strong> de <code>const posts = [</code> (al principio del listado). No te olvides de la coma al final.</li>
+          <li>Bajá hasta el final de la página y tocá <strong>"Commit changes"</strong> (Confirmar cambios)</li>
+          <li>En 30-60 segundos, tu nuevo post aparece en la web 💜</li>
+        </ol>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-link">← Volver a la web</a>
+
+  </div>
+
+  <script>
+    // Set today's date by default
+    const dateInput = document.getElementById('date');
+    const today = new Date();
+    dateInput.value = today.toISOString().split('T')[0];
+
+    // Icon picker
+    let selectedIcon = 'butterfly';
+    document.querySelectorAll('.icon-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.icon-option').forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedIcon = el.dataset.icon;
+      });
+    });
+
+    // Format date DD · MM · AAAA
+    function formatDate(dateStr) {
+      const [y, m, d] = dateStr.split('-');
+      return `${d} · ${m} · ${y}`;
+    }
+
+    // Convert simple markdown to HTML
+    function markdownish(text) {
+      // Escape HTML first
+      text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      // Bold **text**
+      text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      // Italic _text_
+      text = text.replace(/_([^_]+)_/g, '<em>$1</em>');
+      // Split into paragraphs by blank lines
+      const paragraphs = text.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+      return paragraphs.map(p => `      <p>${p.replace(/\n/g, '<br>')}</p>`).join('\n');
+    }
+
+    // Generate a unique-ish id based on timestamp
+    function generateId() {
+      return Date.now();
+    }
+
+    function getFormData() {
+      return {
+        date: dateInput.value,
+        title: document.getElementById('title').value.trim(),
+        excerpt: document.getElementById('excerpt').value.trim(),
+        content: document.getElementById('content').value.trim(),
+        icon: selectedIcon
+      };
+    }
+
+    function validate(data) {
+      if (!data.date) return 'Elegí una fecha.';
+      if (!data.title) return 'Agregá un título.';
+      if (!data.excerpt) return 'Agregá un resumen corto.';
+      if (!data.content) return 'Escribí el cuerpo del texto.';
+      return null;
+    }
+
+    // Generate button
+    document.getElementById('generate-btn').addEventListener('click', () => {
+      const data = getFormData();
+      const err = validate(data);
+      if (err) { alert(err); return; }
+
+      const dateFormatted = formatDate(data.date);
+      const contentHtml = markdownish(data.content);
+      // Escape backticks in content to be safe
+      const titleSafe = data.title.replace(/"/g, '\\"');
+      const excerptSafe = data.excerpt.replace(/"/g, '\\"');
+
+      const code = `  {
+    id: ${generateId()},
+    date: "${dateFormatted}",
+    title: "${titleSafe}",
+    excerpt: "${excerptSafe}",
+    icon: "${data.icon}",
+    content: \`
+${contentHtml}
+    \`
+  },`;
+
+      document.getElementById('code-output').textContent = code;
+      const output = document.getElementById('output');
+      output.classList.add('show');
+      output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Preview button
+    document.getElementById('preview-btn').addEventListener('click', () => {
+      const data = getFormData();
+      const err = validate(data);
+      if (err) { alert(err); return; }
+
+      document.getElementById('preview-date').textContent = formatDate(data.date);
+      document.getElementById('preview-title').textContent = data.title;
+      document.getElementById('preview-body').innerHTML = markdownish(data.content);
+      const preview = document.getElementById('preview');
+      preview.classList.add('show');
+      preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Copy button
+    document.getElementById('copy-btn').addEventListener('click', async () => {
+      const code = document.getElementById('code-output').textContent;
+      try {
+        await navigator.clipboard.writeText(code);
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = '¡Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copiar';
+          btn.classList.remove('copied');
+        }, 2000);
+      } catch (e) {
+        alert('No se pudo copiar. Seleccioná el texto manualmente.');
+      }
+    });
+  </script>
+
+</body>
+</html>
