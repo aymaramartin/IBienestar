@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /escribir.html
+
+Sitemap: https://aymaramartin.github.io/IBienestar/sitemap.xml

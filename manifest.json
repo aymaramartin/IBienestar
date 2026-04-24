@@ -1,0 +1,20 @@
+{
+  "name": "IBienestar · Soul Healing",
+  "short_name": "IBienestar",
+  "description": "Terapias alternativas con Ivana Budi: Reiki, Constelaciones, Registros Akáshicos, Florales y Aromaterapia.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "es-AR",
+  "background_color": "#faf7f5",
+  "theme_color": "#6b2d8c",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

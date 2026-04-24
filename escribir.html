@@ -6,9 +6,13 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>Panel de escritura · IBienestar</title>
 
+  <meta name="theme-color" content="#faf7f5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#150b22" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Dancing+Script:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500&family=Dancing+Script:wght@400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
@@ -24,11 +28,26 @@
       --color-ink: #2c1b3a;
       --color-ink-soft: #5a4a68;
       --color-line: #e5dae8;
+      --color-card: #ffffff;
       --color-success: #25d366;
       --font-display: "Fraunces", serif;
       --font-script: "Dancing Script", cursive;
       --font-body: "Jost", system-ui, sans-serif;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-violet: #c39ce0;
+        --color-violet-deep: #d8b8ed;
+        --color-lavender: #8a6ba0;
+        --color-lavender-bg: #2c1b3a;
+        --color-cream: #150b22;
+        --color-ivory: #1d1230;
+        --color-ink: #f0e6f5;
+        --color-ink-soft: #c8b5d9;
+        --color-line: #3a2849;
+        --color-card: #221432;
+      }
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -83,7 +102,7 @@
 
     /* Form */
     .card {
-      background: #fff;
+      background: var(--color-card);
       border: 1px solid var(--color-line);
       border-radius: 10px;
       padding: 40px;
@@ -163,7 +182,7 @@
     }
     .icon-option:hover {
       border-color: var(--color-lavender);
-      background: #fff;
+      background: var(--color-card);
     }
     .icon-option.selected {
       border-color: var(--color-violet);
@@ -283,7 +302,7 @@
       color: var(--color-ink);
     }
     .instructions code {
-      background: #fff;
+      background: var(--color-card);
       padding: 2px 6px;
       border-radius: 3px;
       font-family: 'SF Mono', Menlo, monospace;
@@ -294,7 +313,7 @@
     /* Preview */
     .preview {
       margin-top: 40px;
-      background: #fff;
+      background: var(--color-card);
       border: 1px solid var(--color-line);
       border-radius: 10px;
       padding: 40px;
@@ -341,6 +360,38 @@
       transition: color 0.3s var(--ease);
     }
     .back-link:hover { color: var(--color-violet); }
+
+    /* A11y */
+    :focus { outline: none; }
+    :focus-visible {
+      outline: 2px solid var(--color-violet);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* Inline error message (replaces alert) */
+    .form-error {
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-radius: 8px;
+      background: #fdecec;
+      color: #8a1f1f;
+      border-left: 3px solid #c44;
+      font-size: 14px;
+      display: none;
+    }
+    .form-error.show { display: block; animation: slideUp 0.3s var(--ease); }
+    @media (prefers-color-scheme: dark) {
+      .form-error { background: #3a1414; color: #f5b8b8; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
 
     /* Responsive */
     @media (max-width: 600px) {
@@ -421,6 +472,8 @@
         <button type="button" class="btn-ghost" id="preview-btn">Vista previa</button>
       </div>
 
+      <div class="form-error" id="form-error" role="alert" aria-live="polite"></div>
+
     </form>
 
     <!-- Preview -->
@@ -441,7 +494,7 @@
       </div>
 
       <div class="instructions">
-        <h3>Cómo publicarlo (3 pasitos)</h3>
+        <h3>Cómo publicarlo</h3>
         <ol>
           <li>Andá a tu repositorio en GitHub y abrí el archivo <code>js/posts.js</code></li>
           <li>Tocá el lapicito ✏️ (editar) en la esquina superior derecha del archivo</li>
@@ -514,11 +567,28 @@
       return null;
     }
 
+    const errorBox = document.getElementById('form-error');
+    function showError(msg) {
+      errorBox.textContent = msg;
+      errorBox.classList.add('show');
+      errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    function clearError() {
+      errorBox.classList.remove('show');
+      errorBox.textContent = '';
+    }
+
+    // Clear error as the user fixes the form
+    document.querySelectorAll('input, textarea').forEach(el => {
+      el.addEventListener('input', clearError);
+    });
+
     // Generate button
     document.getElementById('generate-btn').addEventListener('click', () => {
       const data = getFormData();
       const err = validate(data);
-      if (err) { alert(err); return; }
+      if (err) { showError(err); return; }
+      clearError();
 
       const dateFormatted = formatDate(data.date);
       const contentHtml = markdownish(data.content);
@@ -547,7 +617,8 @@ ${contentHtml}
     document.getElementById('preview-btn').addEventListener('click', () => {
       const data = getFormData();
       const err = validate(data);
-      if (err) { alert(err); return; }
+      if (err) { showError(err); return; }
+      clearError();
 
       document.getElementById('preview-date').textContent = formatDate(data.date);
       document.getElementById('preview-title').textContent = data.title;
@@ -570,7 +641,7 @@ ${contentHtml}
           btn.classList.remove('copied');
         }, 2000);
       } catch (e) {
-        alert('No se pudo copiar. Seleccioná el texto manualmente.');
+        showError('No se pudo copiar automáticamente. Seleccioná el texto y copialo con Ctrl+C.');
       }
     });
   </script>
